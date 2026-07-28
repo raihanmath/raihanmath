@@ -9,6 +9,8 @@
   --navy:      #1B2A4A;
   --navy2:     #243560;
   --teal:      #1A6B6B;
+   --dp1:      #2A213B;
+   --dp2:      #9388A8;
   --teal-light:#E6F4F4;
   --gold:      #B8873A;
   --gold-light:#FDF5E8;
@@ -90,7 +92,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ═══════ HERO BANNER ═══════ */
 .hero-banner {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, var(--teal) 100%);
+  background: linear-gradient(135deg, var(--dp1) 0%, var(--navy2) 60%, var(--dp2) 100%);
   padding: 3.5rem 2rem;
 }
 .hero-content {
