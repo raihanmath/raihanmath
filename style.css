@@ -22,6 +22,8 @@
   --sans:      'DM Sans', sans-serif;
   --sh:        0 2px 12px rgba(0,0,0,.07);
   --sh2:       0 6px 28px rgba(0,0,0,.11);
+  --mar        #823C47;
+  --mar2       #BAA2A6;
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -40,7 +42,7 @@ img { max-width: 100%; height: auto; display: block; }
 /* ═══════ HEADER / NAV ═══════ */
 #header {
   position: sticky; top: 0; z-index: 500;
-  background: #9E939C;
+  background: var(--nevy);
   box-shadow: 0 2px 8px rgba(0,0,0,.25);
 }
 .header-inner {
@@ -90,7 +92,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ═══════ HERO BANNER ═══════ */
 .hero-banner {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 60%, var(--teal) 100%);
+  background: linear-gradient(135deg, var(--mar) 0%, var(--mar) 60%, var(--mar2) 100%);
   padding: 3.5rem 2rem;
 }
 .hero-content {
