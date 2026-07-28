@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pragya Gupta — Academic Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- ── TOP BAR ── -->
+  <header id="header">
+    <div class="header-inner">
+      <a href="index.html" class="site-title">Pragya Gupta <span>Research Scholar</span></a>
+      <nav class="main-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="resources.html">Resources</a>
+        <a href="education.html">Education</a>
+        <a href="awards.html">Awards</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="burger" id="burger">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- ── MOBILE NAV ── -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="publications.html">Publications</a>
+    <a href="resources.html">Resources</a>
+    <a href="education.html">Education</a>
+    <a href="awards.html">Awards</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ── HERO BANNER ── -->
+  <section class="hero-banner">
+    <div class="hero-content">
+      <div class="hero-photo-col">
+        <!-- Replace src with your photo path -->
+        <div class="photo-frame">
+          <img src="photo.jpg" alt="Pragya Gupta" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="photo-fallback">YN</div>
+        </div>
+      </div>
+      <div class="hero-text-col">
+        <h1 class="hero-name">Pragya Gupta</h1>
+        <!--p class="hero-degree">PhD, [Your Degree/Specialisation]</p>-->
+        <p class="hero-position"><strong>Doctoral Researcher </strong>, Department of Mathematics</p>
+        <p class="hero-inst">Indian Institute of Technology Kharagpur</p>
+        <!--p class="hero-also">Affiliated Researcher, [Second Institution if any]</p>-->
+        <div class="hero-tags">
+          <span>Infromation Fusion</span><span>Evidence Theory</span><span>Machine Learning</span><span>Medical Image Analysis</span>
+        </div>
+        <div class="hero-links">
+          <a href="mailto:g.pragya1@gmil.com" class="hl-btn">✉ Email</a>
+          <a href="https://scholar.google.com/citations?user=7JO9yAkAAAAJ&hl=en" target="_blank" class="hl-btn">Scholar</a>
+          <a href="https://www.linkedin.com/in/pragya-gupta-551189179/" target="_blank" class="hl-btn">LinkedIn</a>
+          <a href="https://drive.google.com/file/d/14ePbPcTTT4X_976JHAFce2rC9c4yaLkR/view?usp=drive_link" class="hl-btn hl-primary">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MAIN CONTENT ── -->
+  <main class="page-main">
+    <div class="content-cols">
+
+      <!-- LEFT: BIO + NEWS -->
+      <div class="col-main">
+
+        <!-- Bio -->
+        <section class="card" id="bio">
+          <h2 class="card-title">About</h2>
+          <div class="bio-text">
+            <!--p>
+              <strong>I</strong> am a Doctoral Researcher working with Prof. Debjani Chakraborty and Prof. Debashree Guha Adhya in the Department of Mathematics 
+              at the Indian Institute of Technology Kharagpur. My research focuses on <em>constructing aggregation operators, evidence theory for multi-attribute 
+              group decision-making</em> with applications to <em>medical image analysis, specifically the analysis of patterns in Fundus and OCT images</em>. 
+              In addition, I have expertise in designing an explainable multi-objective model to obtain an interpretable training procedure. 
+            </p>
+            <p>
+              Prior to joining as a researcher, I completed M.Tech in <em>Computer Science and Data Processing (CSDP)</em> from the Indian Institute of Technology 
+              Kharagpur in 2020. Here, I have developed a Bonferroni aggregation operator based image resizing algorithm and edge detection framework depeding on developed
+              aggregation operator (information fusion operator).
+              
+              
+            <!--p>
+              They are a recipient of [fellowship/scholarship name] and have been involved with [society/community]. Their work aims to [one-sentence mission statement].
+            </p>
+            <p>
+              <strong>Specialities:</strong> <em>[Field 1], [Field 2], [Field 3], [Field 4], [Field 5]</em>
+            </p>-->
+            <!--p>
+            <strong>I</strong> am a Doctoral Researcher working with Prof. Debjani Chakraborty and Prof. Debashree Guha Adhya in the Department of Mathematics 
+            at the <strong>Indian Institute of Technology Kharagpur</strong>. My research focuses on <strong>aggregation operators</strong>, 
+            <strong>evidence theory</strong>, and <strong>multi-attribute group decision-making</strong>, with applications in 
+            <strong>medical image analysis</strong>, particularly the analysis of <em>Fundus</em> and <em>OCT</em> images. 
+            I also work on <strong>explainable multi-objective learning frameworks</strong> aimed at developing interpretable and transparent training procedures.
+          </p>
+          
+          <p>
+            Prior to joining as a researcher, I completed my M.Tech in <em>Computer Science and Data Processing (CSDP)</em> from the 
+            <strong>Indian Institute of Technology Kharagpur</strong> in 2020. During this period, I developed a 
+            <strong>Bonferroni aggregation operator–based image resizing algorithm</strong> along with an 
+            <strong>edge detection framework driven by information fusion through aggregation operators</strong>, 
+            highlighting the role of mathematical aggregation techniques in advanced image processing and analysis.
+          </p>-->
+            <p style="font-size:16px; line-height:1.8; color:#444;">
+  <strong style="color:#1F3A5F;">I</strong> am a Doctoral Researcher working with 
+  <span style="color:#2F4F6F; font-weight:600;">Prof. Debjani Chakraborty</span> and 
+  <span style="color:#2F4F6F; font-weight:600;">Prof. Debashree Guha Adhya</span> in the Department of Mathematics 
+  at the <strong style="color:#1F3A5F;">Indian Institute of Technology Kharagpur</strong>. 
+  My research focuses on 
+  <span style="color:#4A6572; font-weight:600;">aggregation operators</span>, 
+  <span style="color:#4A6572; font-weight:600;">evidence theory</span>, and 
+  <span style="color:#4A6572; font-weight:600;">multi-attribute group decision-making</span>, 
+  with applications in 
+  <span style="color:#355C7D; font-weight:600;">medical image analysis</span>, particularly the analysis of 
+  <em>Fundus</em> and <em>OCT</em> images. 
+  I also work on 
+  <span style="color:#5C6B73; font-weight:600;">
+    explainable multi-objective learning frameworks
+  </span> aimed at developing interpretable and transparent training procedures.
+</p>
+
+<p style="font-size:16px; line-height:1.8; color:#444;">
+  Prior to joining as a researcher, I completed my M.Tech in 
+  <em style="color:#4A6572;">Computer Science and Data Processing (CSDP)</em> from the 
+  <strong style="color:#1F3A5F;">Indian Institute of Technology Kharagpur</strong> in 2020. 
+  During this period, I developed a 
+  <span style="color:#6D4C41; font-weight:600;">
+    Bonferroni aggregation operator based image resizing algorithm
+  </span> along with an 
+  <span style="color:#6D4C41; font-weight:600;">
+    edge detection framework driven by information fusion operators (aggregation operators)
+  </span>, highlighting the significance of aggregation techniques in advanced image processing.
+</p>
+
+            
+          </div>
+        </section>
+
+        <!-- Research GIF / Image Zone -->
+       <section class="card" id="gif-zone">
+          <h2 class="card-title">Research Highlights</h2>
+          <p class="card-sub">
+            <ul class="card-sub">
+            <li>
+              Novel unsupervised method for retinal vascular segmentation using Bonferroni mean pre-aggregation and dynamic fuzzy histogram equalization, enabling accurate extraction of small vessels in low-contrast regions.
+            </li>
+            <li>
+              This study proposes an explainable training procedure that consistently minimizes the model's loss and maximizes individual feature importance objectives, improving classification decision-making. It provides an interpretable framework and prioritizes features that positively influence the model's performance
+            </li>
+          </ul>
+          </p>
+        
+          <div class="gif-grid">
+
+            <!-- Slot 1 -->
+            <div class="gif-slot">
+              <img src="research1.jpg" alt="Research visual 1" class="gif-img"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          
+              <div class="gif-placeholder" style="display:none;">
+                <div class="gif-icon">🎞</div>
+                <p>research1.jpg</p>
+                <!--span>
+                  Novel unsupervised method for retinal vascular segmentation using Bonferroni mean pre-aggregation and dynamic fuzzy histogram equalization, enabling accurate extraction of small vessels in low-contrast regions.
+                </span>-->
+              </div>
+            </div>
+          
+            <!-- Slot 2 -->
+            <div class="gif-slot">
+              <img src="research2.jpeg" alt="Research visual 2" class="gif-img"
+                   onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+          
+              <div class="gif-placeholder" style="display:none;">
+                <div class="gif-icon">🎞</div>
+                <p>research2.jpeg</p>
+                <span>Replace with your image or GIF</span>
+              </div>
+            </div>
+          
+          </div> <!-- ✅ ONLY ONE closing gif-grid -->
+        
+          <!--p class="img-hint">
+            💡 <strong>How to add images/GIFs:</strong>
+            Upload your file to GitHub alongside <code>index.html</code>, then replace
+            <code>research1.gif</code> with your filename in the HTML.
+          </p>-->
+      </section>
+
+      </div>
+
+      <!-- RIGHT: NEWS + QUICK LINKS -->
+      <div class="col-side">
+
+        <!-- News -->
+        <section class="card news-card" id="news">
+          <h2 class="card-title">News &amp; Updates</h2>
+          <ul class="news-list">
+            <li>
+              <span class="news-date">June 2026</span>
+              <p>Paper accepted at <strong>International Journal of Systems Science </strong>- Inter Observer Variability Assessment through Ordered Weighted Belief Divergence Measure in MAGDM.</p>
+            </li>
+            <li>
+              <span class="news-date">March 2026</span>
+              <p>Received <strong> Best Paper Presentation Award </strong> in ICMOTA 2026.</p>
+            </li>
+            <li>
+              <span class="news-date">March 2026</span>
+              <p>Presented at <strong>ICMOTA 2026</strong>, IIT (BHU) Varanasi, India .</p>
+            </li>
+            <li>
+              <span class="news-date">Jan 2026</span>
+              <p>Presented at <strong>FSTA 2026</strong>, Liptovsky Jan, Slovak Republic .</p>
+            </li>
+            
+            <li>
+              <span class="news-date">Jan 2026</span>
+              <p>Paper accepted at <strong>IEEE Access</strong> — Ranking Feature Importance Objectives for Explainable Classification.</p>
+            </li>
+            <li>
+              <span class="news-date">Sept 2025</span>
+              <p>Paper accepted at <strong>IEEE Journal of Biomedical and Health Informatics</strong> — Bonferroni Mean Pre-aggregation
+Operator Assisted Dynamic Fuzzy Histogram Equalization for Retinal Vascular Segmentation.</p>
+            </li>
+            <!--li>
+              <span class="news-date">Aug 2024</span>
+              <p>Received <strong>[Award / Fellowship Name]</strong> from [Organisation].</p>
+            </li>
+            <li>
+              <span class="news-date">Jun 2024</span>
+              <p>New preprint available on arXiv: <a href="#">[Short paper title]</a>.</p>
+            </li>
+            <li>
+              <span class="news-date">Mar 2024</span>
+              <p>Started research collaboration with <strong>[Lab / University]</strong>.</p>
+            </li>-->
+          </ul>
+        </section>
+
+        <!-- Quick Stats -->
+        <section class="card stats-card">
+          <h2 class="card-title">At a Glance</h2>
+          <div class="stats-grid">
+            <div class="stat-box"><span class="sn">5+</span><span class="sl">Publications</span></div>
+            <div class="stat-box"><span class="sn">5+</span><span class="sl">Years PhD</span></div>
+            <div class="stat-box"><span class="sn">4</span><span class="sl">Awards</span></div>
+            <div class="stat-box"><span class="sn">2</span><span class="sl">Collaborators</span></div>
+          </div>
+        </section>
+
+        <!-- Quick Nav -->
+        <section class="card qnav-card">
+          <h2 class="card-title">Explore</h2>
+          <div class="qnav-links">
+            <a href="research.html">🔬 Research</a>
+            <a href="publications.html">📄 Publications</a>
+            <a href="resources.html">📦 Resources &amp; Code</a>
+            <a href="education.html">🎓 Education</a>
+            <a href="awards.html">🏆 Awards</a>
+            <a href="contact.html">✉ Contact</a>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Pragya Gupta · <a href="index.html">Indian Institute of Technology Kharagpur</a></span>
+      <!--span>Built with GitHub Pages</span>-->
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+</body>
+</html>

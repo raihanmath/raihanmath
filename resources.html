@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Resources — Pragya Gupta</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <header id="header">
+    <div class="header-inner">
+      <a href="index.html" class="site-title">Pragya Gupta <span>Research Scholar</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="publications.html">Publications</a>
+        <a href="resources.html" class="active">Resources</a>
+        <a href="education.html">Education</a>
+        <a href="awards.html">Awards</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="burger" id="burger">&#9776;</button>
+    </div>
+  </header>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a><a href="research.html">Research</a>
+    <a href="publications.html">Publications</a><a href="resources.html">Resources</a>
+    <a href="education.html">Education</a><a href="awards.html">Awards</a><a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Resources</div>
+      <h1>Resources</h1>
+      <p>Open-access materials — paper previews, code repositories, and datasets.</p>
+    </div>
+  </div>
+
+  <main class="page-single">
+
+    <!-- HOW TO USE THIS PAGE -->
+    <!--div class="card" style="background:var(--gold-light);border-left:4px solid var(--gold);border-radius:0 10px 10px 0;">
+      <h2 class="card-title" style="border-bottom-color:var(--gold);">How to add your content</h2>
+      <ul style="font-size:.88rem;color:var(--ink2);line-height:2;padding-left:1.5rem;">
+        <li><strong>Paper first-page image:</strong> Screenshot page 1 of your PDF → save as <code>paper1_preview.jpg</code> → upload to GitHub → replace placeholder image tag.</li>
+        <li><strong>GIF / animation:</strong> Save as <code>research_anim.gif</code> → upload → swap in <code>&lt;img src="research_anim.gif"&gt;</code>.</li>
+        <li><strong>Code:</strong> Link to your GitHub repo URL in the card button.</li>
+        <li><strong>Dataset:</strong> Link to your Zenodo / Figshare / OSF page.</li>
+        <li><strong>Slides:</strong> Upload your PDF slides alongside the HTML and link directly.</li>
+      </ul>
+    </div>-->
+
+    <!-- ── PAPER PREVIEWS ── -->
+    <!--div class="card">
+      <h2 class="card-title">Paper Previews</h2>
+      <p class="card-sub">First-page screenshots of published papers. Click "Abstract" to read the summary, or PDF to download.</p>
+      <div class="res-grid">-->
+
+        <!-- Paper 1 -->
+        <!--div class="res-card">
+          <div class="res-preview">
+            <!-- Replace with: <img src="paper1_preview.jpg" alt="Paper 1 first page"> -->
+            <!--div class="res-preview-placeholder">
+              <div style="font-size:2rem;">📄</div>
+              <p style="font-size:.75rem;font-family:monospace;color:var(--ink3);">paper1_preview.jpg</p>
+              <span style="font-size:.68rem;color:var(--ink3);">Screenshot of paper first page</span>
+            </div>
+            <span class="res-type-badge rtb-paper">Journal 2024</span>
+          </div>
+          <div class="res-body">
+            <div class="res-title">Title of Your First Paper (Short Version)</div>
+            <div class="res-meta">Journal Name · 2024 · First Author</div>
+            <div class="res-desc">One or two sentence summary of what this paper is about and why it matters.</div>
+            <div class="res-actions">
+              <a href="#" class="ra-btn">PDF</a>
+              <a href="#" class="ra-btn-sec">DOI</a>
+              <a href="#" class="ra-btn-sec">Cite</a>
+            </div>
+          </div>
+        </div>-->
+
+        <!-- Paper 2 -->
+        <!--div class="res-card">
+          <div class="res-preview">
+            <!-- Replace with: <img src="paper2_preview.jpg" alt="Paper 2 first page"> -->
+            <!--div class="res-preview-placeholder">
+              <div style="font-size:2rem;">📄</div>
+              <p style="font-size:.75rem;font-family:monospace;color:var(--ink3);">paper2_preview.jpg</p>
+              <span style="font-size:.68rem;color:var(--ink3);">Screenshot of paper first page</span>
+            </div>
+            <span class="res-type-badge rtb-paper">Conference 2023</span>
+          </div>
+          <div class="res-body">
+            <div class="res-title">Title of Your Conference Paper (Short Version)</div>
+            <div class="res-meta">Conference Name · 2023 · Oral Presentation</div>
+            <div class="res-desc">Brief description of the contribution and key result from this conference paper.</div>
+            <div class="res-actions">
+              <a href="#" class="ra-btn">PDF</a>
+              <a href="#" class="ra-btn-sec">Slides</a>
+              <a href="#" class="ra-btn-sec">Video</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Paper 3 -->
+        <!--div class="res-card">
+          <div class="res-preview">
+            <div class="res-preview-placeholder">
+              <div style="font-size:2rem;">📄</div>
+              <p style="font-size:.75rem;font-family:monospace;color:var(--ink3);">paper3_preview.jpg</p>
+              <span style="font-size:.68rem;color:var(--ink3);">Screenshot of paper first page</span>
+            </div>
+            <span class="res-type-badge rtb-paper">Preprint 2023</span>
+          </div>
+          <div class="res-body">
+            <div class="res-title">Title of Your Preprint</div>
+            <div class="res-meta">arXiv · 2023 · Under Review</div>
+            <div class="res-desc">Summary of the preprint — what is novel about the work and what are the main findings.</div>
+            <div class="res-actions">
+              <a href="#" class="ra-btn">arXiv</a>
+              <a href="#" class="ra-btn-sec">Cite</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── RESEARCH GIFs / ANIMATIONS ── -->
+    <!--div class="card">
+      <h2 class="card-title">Figures &amp; Animations</h2>
+      <p class="card-sub">Key figures, result animations, and GIFs from my published work. All freely usable with attribution.</p>
+      <div class="res-grid">
+
+        <!-- GIF 1 -->
+        <!--div class="res-card">
+          <div class="res-preview">
+            <!-- Replace with: <img src="result_animation1.gif" alt="Result animation"> -->
+            <!--div class="res-preview-placeholder">
+              <div style="font-size:2rem;">🎞</div>
+              <p style="font-size:.75rem;font-family:monospace;color:var(--ink3);">result_animation1.gif</p>
+              <span style="font-size:.68rem;color:var(--ink3);">Upload your GIF animation here</span>
+            </div>
+            <span class="res-type-badge rtb-slides">Animation</span>
+          </div>
+          <div class="res-body">
+            <div class="res-title">Result Animation — Experiment / Method Name</div>
+            <div class="res-meta">From: Paper Title · 2024</div>
+            <div class="res-desc">Describe what this animation shows — the method in action, a visual result, or a comparison. Cite the source paper.</div>
+            <div class="res-actions">
+              <a href="#" class="ra-btn">Download GIF</a>
+              <a href="publications.html" class="ra-btn-sec">Source Paper</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- GIF 2 -->
+        <!--div class="res-card">
+          <div class="res-preview">
+            <!-- Replace with: <img src="result_figure1.png" alt="Result figure"> -->
+            <!--div class="res-preview-placeholder">
+              <div style="font-size:2rem;">📊</div>
+              <p style="font-size:.75rem;font-family:monospace;color:var(--ink3);">result_figure1.png</p>
+              <span style="font-size:.68rem;color:var(--ink3);">Upload your key result figure</span>
+            </div>
+            <span class="res-type-badge rtb-slides">Figure</span>
+          </div>
+          <div class="res-body">
+            <div class="res-title">Key Result Figure — Comparison / Output Visualization</div>
+            <div class="res-meta">From: Paper Title · 2023</div>
+            <div class="res-desc">Briefly describe what this figure shows — axis labels, what is being compared, and the takeaway message.</div>
+            <div class="res-actions">
+              <a href="#" class="ra-btn">Download PNG</a>
+              <a href="publications.html" class="ra-btn-sec">Source Paper</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>-->
+
+    <!-- ── CODE REPOSITORIES ── -->
+    <div class="card">
+      <h2 class="card-title">Code Repositories</h2>
+      <p class="card-sub">Open-source implementations, analysis scripts, and reproducibility packages.</p>
+      <div class="res-grid">
+
+        <!-- Code 1 -->
+        <div class="res-card">
+          <div class="code-preview">
+            <div class="c-bar">
+              <div class="c-dot" style="background:#ff5f57"></div>
+              <div class="c-dot" style="background:#febc2e"></div>
+              <div class="c-dot" style="background:#28c840"></div>
+              <span style="color:#6272a4;font-size:.6rem;margin-left:.4rem">model.py</span>
+            </div>
+            <span style="display:block"><span class="c-kw">import</span> <span class="c-var">torch</span></span>
+            <span style="display:block"><span class="c-kw">import</span> <span class="c-var">numpy</span> <span class="c-kw">as</span> <span class="c-var">np</span></span>
+            <span style="display:block">&nbsp;</span>
+            <span style="display:block"><span class="c-cm"># Your research model</span></span>
+            <span style="display:block"><span class="c-kw">class</span> <span class="c-fn">YourModel</span>(<span class="c-var">nn.Module</span>):</span>
+            <span style="display:block">&nbsp;&nbsp;<span class="c-kw">def</span> <span class="c-fn">__init__</span>(<span class="c-var">self</span>, cfg):</span>
+            <span style="display:block">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-var">super</span>().<span class="c-fn">__init__</span>()</span>
+            <span style="display:block">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-var">self</span>.net = <span class="c-fn">build_network</span>(cfg)</span>
+            <span style="display:block">&nbsp;</span>
+            <span style="display:block">&nbsp;&nbsp;<span class="c-kw">def</span> <span class="c-fn">forward</span>(<span class="c-var">self</span>, x):</span>
+            <span style="display:block">&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-kw">return</span> <span class="c-var">self</span>.net(x)</span>
+            <span class="res-type-badge rtb-code" style="position:absolute;top:8px;left:8px;">⌨ Code</span>
+          </div>
+          <div class="res-body">
+            <div class="res-title">Code for BMPDFHESeg — GitHub Repository</div>
+            <div class="res-meta">MATLAB · MIT License</div>
+            <div class="res-desc"> Unsupervised BMPDFHESeg method code provided with publicly accessible DRIVE and STARE datasets. According to the images parameter need to choose. </div>
+            <div class="res-actions">
+              <a href="https://github.com/PS297/BMPDFHESeg.git" target="_blank" class="ra-btn">GitHub ↗</a>
+              <a href="#" class="ra-btn-sec">README</a>
+              <!--a href="#" class="ra-btn-sec">Colab</a>-->
+            </div>
+          </div>
+        </div>
+
+        <!-- Code 2 -->
+        <div class="res-card">
+          <div class="code-preview">
+            <div class="c-bar">
+              <div class="c-dot" style="background:#ff5f57"></div>
+              <div class="c-dot" style="background:#febc2e"></div>
+              <div class="c-dot" style="background:#28c840"></div>
+              <span style="color:#6272a4;font-size:.6rem;margin-left:.4rem">analysis.R</span>
+            </div>
+            <span style="display:block"><span class="c-fn">library</span>(<span class="c-str">tidyverse</span>)</span>
+            <span style="display:block"><span class="c-fn">library</span>(<span class="c-str">lme4</span>)</span>
+            <span style="display:block">&nbsp;</span>
+            <span style="display:block"><span class="c-cm"># Load and clean data</span></span>
+            <span style="display:block">df <span class="c-kw">&lt;-</span> <span class="c-fn">read_csv</span>(<span class="c-str">"data.csv"</span>)</span>
+            <span style="display:block">&nbsp;</span>
+            <span style="display:block"><span class="c-cm"># Fit mixed-effects model</span></span>
+            <span style="display:block">fit <span class="c-kw">&lt;-</span> <span class="c-fn">lmer</span>(y ~ x + (<span class="c-num">1</span>|id), df)</span>
+            <span style="display:block"><span class="c-fn">summary</span>(fit)</span>
+            <span class="res-type-badge rtb-code" style="position:absolute;top:8px;left:8px;">⌨ Code</span>
+          </div>
+          <div class="res-body">
+            <div class="res-title">Code for MoEC — GitHub Repository</div>
+            <div class="res-meta">Python · NSGA3</div>
+            <div class="res-desc">Interpretable model training using many-objective and bi-objective optizisation formulations.</div>
+            <div class="res-actions">
+              <a href="https://github.com/PS297/MoEC.git" target="_blank" class="ra-btn">GitHub ↗</a>
+              <a href="#" class="ra-btn-sec">README</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ── DATASETS ── -->
+    <!--div class="card">
+      <h2 class="card-title">Datasets</h2>
+      <p class="card-sub">Open-access datasets released alongside my publications. Available on Zenodo / Figshare / OSF.</p>
+      <div class="res-grid">
+
+        <div class="res-card">
+          <div class="res-preview" style="background:linear-gradient(135deg,#1B2A4A,#243560);">
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;gap:.7rem;padding:1.5rem;">
+              <div style="font-size:2.5rem;color:#fff;">📦</div>
+              <div style="font-size:1.4rem;font-weight:700;color:#fff;font-family:var(--serif);text-align:center;">12,400<br><span style="font-size:.9rem;color:rgba(255,255,255,.6)">samples</span></div>
+              <div style="display:flex;gap:.3rem;flex-wrap:wrap;justify-content:center;">
+                <span style="background:rgba(255,255,255,.15);color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.65rem;font-weight:600;">CSV</span>
+                <span style="background:rgba(255,255,255,.15);color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.65rem;font-weight:600;">JSON</span>
+                <span style="background:rgba(255,255,255,.15);color:#fff;padding:.15rem .5rem;border-radius:3px;font-size:.65rem;font-weight:600;">HDF5</span>
+              </div>
+            </div>
+            <span class="res-type-badge rtb-data">Dataset</span>
+          </div>
+          <div class="res-body">
+            <div class="res-title">Dataset Name — Used in Paper One &amp; Two</div>
+            <div class="res-meta">12,400 samples · CC BY 4.0 · Zenodo · DOI: 10.5281/XXXXX</div>
+            <div class="res-desc">Describe what the dataset contains, how it was collected, and how other researchers can use it. Note any preprocessing steps or known limitations.</div>
+            <div class="res-actions">
+              <a href="#" class="ra-btn">Zenodo ↗</a>
+              <a href="#" class="ra-btn-sec">Documentation</a>
+              <a href="#" class="ra-btn-sec">Data Paper</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>-->
+
+    <!-- ── SLIDES ── -->
+    <!--div class="card">
+      <h2 class="card-title">Presentation Slides</h2>
+      <p class="card-sub">Slides from conference talks and seminars. Download freely with attribution.</p>
+      <div class="res-grid">
+
+        <div class="res-card">
+          <div class="res-preview" style="background:linear-gradient(135deg,var(--navy) 0%,var(--teal) 100%);">
+            <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;width:100%;height:100%;gap:1rem;padding:2rem;">
+              <div style="background:rgba(255,255,255,.12);border-radius:8px;padding:1.2rem 1.5rem;text-align:center;max-width:200px;">
+                <div style="font-family:var(--serif);font-size:1.1rem;color:#fff;font-weight:600;line-height:1.3;margin-bottom:.6rem;">Conference Talk<br>Slides</div>
+                <div style="height:1px;background:rgba(255,255,255,.3);margin-bottom:.6rem;"></div>
+                <div style="font-size:.72rem;color:rgba(255,255,255,.6);">Your Name · 2023</div>
+              </div>
+            </div>
+            <span class="res-type-badge rtb-slides">🖥 Slides</span>
+          </div>
+          <div class="res-body">
+            <div class="res-title">Slides — Conference Name 2023 Oral Presentation</div>
+            <div class="res-meta">PowerPoint + PDF · 42 slides · [Conference, City]</div>
+            <div class="res-desc">Full presentation from my oral talk at [Conference 2023]. Covers motivation, method, experimental results, and future directions.</div>
+            <div class="res-actions">
+              <a href="#" class="ra-btn">PDF ↗</a>
+              <a href="#" class="ra-btn-sec">PPTX</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>-->
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Pragya Gupta · <a href="index.html">Home</a></span>
+    </div>
+  </footer>
+  <script src="nav.js"></script>
+</body>
+</html>
