@@ -92,7 +92,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ═══════ HERO BANNER ═══════ */
 .hero-banner {
-  background: linear-gradient(135deg, var(--teel) 0%, var(--teel) 60%, var(--ink3) 100%);
+  background: linear-gradient(135deg, #61343B) 0%, #61343B 60%, #BAA2A6) 100%);
   padding: 3.5rem 2rem;
 }
 .hero-content {
