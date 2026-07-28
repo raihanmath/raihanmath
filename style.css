@@ -22,8 +22,8 @@
   --sans:      'DM Sans', sans-serif;
   --sh:        0 2px 12px rgba(0,0,0,.07);
   --sh2:       0 6px 28px rgba(0,0,0,.11);
-  --mar        #61343B;
-  --mar2       #BAA2A6;
+  --mar:        #524866;
+  --mar2:       #8F77BF;
 }
 
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -92,7 +92,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ═══════ HERO BANNER ═══════ */
 .hero-banner {
-  background: linear-gradient(135deg, #61343B) 0%, #61343B 60%, #BAA2A6) 100%);
+  background: linear-gradient(135deg, var(--mar)) 0%, var(mar) 60%, var(mar2)) 100%);
   padding: 3.5rem 2rem;
 }
 .hero-content {
