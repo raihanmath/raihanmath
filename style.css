@@ -238,7 +238,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ═══════ PAGE HERO (inner pages) ═══════ */
 .page-hero {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 100%);
+  background: linear-gradient(135deg, var(--dp1) 20%, var(--dp2) 20%, var(--dpp) 100%);
   padding: 2.8rem 2rem;
 }
 .page-hero-inner { max-width: 1200px; margin: 0 auto; }
