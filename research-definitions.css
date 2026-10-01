@@ -1,0 +1,42 @@
+/* ══════════════════════════════════════
+   DEFINITIONS NEEDED BY THE RESEARCH PAGE STYLES
+   Paste into your stylesheet ABOVE the .pub-* rules.
+══════════════════════════════════════ */
+
+/* 1. Fonts (.pub-num and .pub-doi use JetBrains Mono) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+/* 2. Color variables used by every .pub-* rule */
+:root{
+  --surf: #ffffff;   /* card background           */
+  --brd:  #e2e6ec;   /* card border, tab underline */
+  --txt:  #1a2233;   /* titles                     */
+  --mut:  #55607a;   /* authors                    */
+  --fnt:  #8590a6;   /* venue text, inactive tabs  */
+  --acc:  #2563eb;   /* accent: active tab, number, card bar */
+  --acc2: #0f766e;   /* DOI link                   */
+  --tag:  #e8effd;   /* badge background           */
+  --tagt: #1d4ed8;   /* badge text                 */
+}
+
+/* Optional dark theme: add data-theme="dark" to <html> to use it */
+:root[data-theme="dark"]{
+  --surf: #171d2c;
+  --brd:  #2a3348;
+  --txt:  #e8ecf5;
+  --mut:  #a7b1c7;
+  --fnt:  #7783a0;
+  --acc:  #6ea0ff;
+  --acc2: #4fd1c0;
+  --tag:  #1f2a47;
+  --tagt: #9bbcff;
+}
+
+/* 3. Wrapper used by <div class="wrap">
+      (skip if your page already has a .wrap) */
+.wrap{
+  max-width:900px;
+  margin:0 auto;
+  padding:3rem 1.5rem;
+  font-family:'Inter',system-ui,-apple-system,'Segoe UI',sans-serif;
+}
