@@ -3,27 +3,117 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Education — Pragya Gupta</title>
-  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <title>Research — Md Abu Raihan</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="style.css"/>
+
+  <style>
+  /* ══════════════════════════════════════
+     PUBLICATIONS (tabbed list)
+     Layout copied from the reference page; colors come from YOUR template.
+  ══════════════════════════════════════ */
+
+  /* >>> COLOR MAPPING: the only block you may need to edit <<<
+     Each line reads a variable from your style.css. If your variable has a
+     different name, replace the first name inside var(...) with yours. */
+  .pubs{
+    --pub-txt:  var(--ink,    var(--ink2));          /* titles               */
+    --pub-mut:  var(--ink2);                         /* authors              */
+    --pub-fnt:  var(--ink3);                         /* venue, inactive tabs */
+    --pub-acc:  var(--accent, var(--primary, var(--gold, #1a56db)));   /* accent: active tab, number, side bar */
+    --pub-acc2: var(--accent2, var(--pub-acc));      /* DOI link             */
+    --pub-surf: var(--surface, var(--card-bg, #ffffff));               /* card background      */
+    --pub-brd:  var(--border, var(--line, #e3e3e3)); /* borders              */
+    --pub-tag:  color-mix(in srgb, var(--pub-acc) 12%, transparent);   /* badge background     */
+    --pub-tagt: var(--pub-acc);                      /* badge text           */
+  }
+
+  .pub-tabs{
+    display:flex;border-bottom:2px solid var(--pub-brd);
+    margin-bottom:2rem;overflow-x:auto;transition:border-color 0.4s;
+  }
+  .pub-tab{
+    font-family:inherit;background:none;border:0;border-bottom:2px solid transparent;
+    font-size:0.77rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
+    color:var(--pub-fnt);padding:0.8rem 1.4rem;cursor:pointer;white-space:nowrap;
+    margin-bottom:-2px;transition:all 0.2s;
+  }
+  .pub-tab:hover{color:var(--pub-acc);}
+  .pub-tab:focus-visible{outline:2px solid var(--pub-acc);outline-offset:-2px;}
+  .pub-tab.active{color:var(--pub-acc);border-bottom-color:var(--pub-acc);}
+  .pub-sec{display:none;flex-direction:column;gap:1.2rem;}
+  .pub-sec.active{display:flex;}
+  .pub-card{
+    background:var(--pub-surf);border:1px solid var(--pub-brd);
+    border-radius:12px;padding:1.6rem 1.8rem;
+    position:relative;overflow:hidden;transition:all 0.25s;
+  }
+  .pub-card::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:var(--pub-acc);border-radius:4px 0 0 4px;
+    transform:scaleY(0);transition:transform 0.25s;
+  }
+  .pub-card:hover::before{transform:scaleY(1);}
+  .pub-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);transform:translateX(4px);}
+  .pub-num{font-family:'JetBrains Mono',monospace;font-size:0.67rem;letter-spacing:0.12em;color:var(--pub-acc);text-transform:uppercase;margin-bottom:0.5rem;transition:color 0.4s;}
+  .pub-title{font-size:0.97rem;font-weight:600;color:var(--pub-txt);line-height:1.55;margin-bottom:0.4rem;transition:color 0.4s;}
+  .pub-auth{font-size:0.82rem;color:var(--pub-mut);font-style:italic;margin-bottom:0.35rem;transition:color 0.4s;}
+  .pub-venue{font-size:0.82rem;color:var(--pub-fnt);margin-bottom:0.5rem;transition:color 0.4s;}
+  .pub-doi{font-family:'JetBrains Mono',monospace;font-size:0.7rem;color:var(--pub-acc2);text-decoration:none;word-break:break-all;transition:color 0.4s;}
+  .pub-doi:hover{text-decoration:underline;}
+  .pub-badge{
+    display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;
+    text-transform:uppercase;padding:0.22rem 0.7rem;border-radius:2rem;
+    background:var(--pub-tag);color:var(--pub-tagt);margin-top:0.5rem;transition:all 0.4s;
+  }
+  @media (max-width:600px){
+    .pub-tab{padding:0.8rem 0.9rem;}
+    .pub-card{padding:1.3rem 1.2rem;}
+  }
+  </style>
 </head>
 <body>
+
+  <!-- ── TOP BAR (matches index.html) ── -->
   <header id="header">
     <div class="header-inner">
-      <a href="index.html" class="site-title">Pragya Gupta <span>Research Scholar</span></a>
+      <a href="index.html" class="site-title">Md Abu Raihan <span>Research Scholar</span></a>
       <nav class="main-nav">
-        <a href="index.html">Home</a><a href="research.html">Research</a>
-        <a href="publications.html">Publications</a><a href="resources.html">Resources</a>
-        <a href="education.html" class="active">Education</a>
-        <a href="awards.html">Awards</a><a href="contact.html">Contact</a>
+        <a href="index.html">Home</a>
+        <a href="research.html" class="active">Research</a>
+        <a href="academics.html">Academics</a>
+         <a href="teaching.html">Teaching</a>
+        <a href="talks.html">Talks</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="variouslinks.html">Various Links</a>
+        <a href="contact.html">Contact</a>
       </nav>
       <button class="burger" id="burger">&#9776;</button>
     </div>
   </header>
+
+  <!-- ── MOBILE NAV (matches index.html) ── -->
   <div class="mobile-nav" id="mobileNav">
-    <a href="index.html">Home</a><a href="research.html">Research</a>
-    <a href="publications.html">Publications</a><a href="resources.html">Resources</a>
-    <a href="education.html">Education</a><a href="awards.html">Awards</a><a href="contact.html">Contact</a>
+    <a href="index.html">Home</a>
+        <a href="research.html" class="active">Research</a>
+        <a href="academics.html">Academics</a>
+         <a href="teaching.html">Teaching</a>
+        <a href="talks.html">Talks</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="variouslinks.html">Various Links</a>
+        <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Research</div>
+      <h1>Research</h1>
+       <div class="hero-tags">
+         <span> <b> Keywords-> </b></span>  <span>Projective Modules</span> <span>Monoid Algebras</span>  <span> Picard groups </span>  
+           <span>Invertible modules</span>  <span>Seminormality</span>  <span>Weak normality</span>    
+           <span> Brauer groups</span><span> Azumaya algebras</span>
+        </div>
+    </div>
   </div>
 
   <div class="page-hero">
