@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Md Abu Raihan</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+  /* ══════════════════════════════════════
+     CONTACT — same look and colors as the Research page
+  ══════════════════════════════════════ */
+
+  /* >>> COLOR MAPPING (identical to research.html) <<< */
+  .pubs{
+    --pub-txt:  var(--ink,    var(--ink2));
+    --pub-mut:  var(--ink2);
+    --pub-fnt:  var(--ink3);
+    --pub-acc:  var(--accent, var(--primary, var(--gold, #1a56db)));
+    --pub-acc2: var(--accent2, var(--pub-acc));
+    --pub-surf: var(--surface, var(--card-bg, #ffffff));
+    --pub-brd:  var(--border, var(--line, #e3e3e3));
+    --pub-tag:  color-mix(in srgb, var(--pub-acc) 12%, transparent);
+    --pub-tagt: var(--pub-acc);
+  }
+
+  .pub-card{
+    background:var(--pub-surf);border:1px solid var(--pub-brd);
+    border-radius:12px;padding:1.2rem 1.4rem;
+    position:relative;overflow:hidden;transition:all 0.25s;
+  }
+  .pub-card::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:var(--pub-acc);border-radius:4px 0 0 4px;
+    transform:scaleY(0);transition:transform 0.25s;
+  }
+  .pub-card:hover::before{transform:scaleY(1);}
+  .pub-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);transform:translateX(4px);}
+  .pub-num{font-family:'JetBrains Mono',monospace;font-size:0.67rem;letter-spacing:0.12em;color:var(--pub-acc);text-transform:uppercase;margin-bottom:0.3rem;}
+  .pub-title{font-size:0.97rem;font-weight:600;color:var(--pub-txt);line-height:1.5;word-break:break-word;}
+
+  /* Get in touch cards */
+  .ct-list{display:flex;flex-direction:column;gap:1rem;margin-top:1.2rem;}
+  .ct-link{display:flex;align-items:center;gap:1rem;text-decoration:none;color:inherit;}
+  .ct-ico{
+    flex:0 0 3rem;height:3rem;display:flex;align-items:center;justify-content:center;
+    background:var(--pub-tag);color:var(--pub-acc);border-radius:10px;
+    font-family:'JetBrains Mono',monospace;font-weight:500;font-size:1rem;
+  }
+  .ct-body{flex:1;min-width:0;}
+  .ct-go{font-size:1.1rem;color:var(--pub-fnt);transition:all 0.25s;}
+  .ct-link:hover .ct-go{color:var(--pub-acc);transform:translate(2px,-2px);}
+  .ct-link:focus-visible{outline:2px solid var(--pub-acc);outline-offset:2px;}
+  .ct-mail a{color:inherit;text-decoration:none;}
+  .ct-mail a:hover{color:var(--pub-acc);}
+  .ct-copy{
+    font-family:inherit;cursor:pointer;border:1px solid var(--pub-brd);background:var(--pub-surf);
+    color:var(--pub-fnt);font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+    padding:0.35rem 0.8rem;border-radius:2rem;transition:all 0.2s;
+  }
+  .ct-copy:hover{background:var(--pub-acc);border-color:var(--pub-acc);color:#fff;}
+  .ct-note{font-size:0.82rem;color:var(--pub-fnt);margin:1.2rem 0 0;line-height:1.7;}
+
+  /* Layout: two parts side by side */
+  .ct-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:1.5rem;align-items:start;}
+  .ct-grid > .card{margin-bottom:0;}
+
+  /* Contact form */
+  .pubs .form-card{margin-top:1.2rem;}
+  .pubs .fg{margin-bottom:1.1rem;}
+  .pubs .fg label{
+    display:block;margin-bottom:0.4rem;font-size:0.72rem;font-weight:700;
+    letter-spacing:0.08em;text-transform:uppercase;color:var(--pub-fnt);
+  }
+  .pubs .fg input,.pubs .fg select,.pubs .fg textarea{
+    width:100%;font-family:inherit;font-size:0.92rem;color:var(--pub-txt);
+    background:var(--pub-surf);border:1px solid var(--pub-brd);border-radius:10px;
+    padding:0.75rem 0.9rem;transition:border-color 0.2s,box-shadow 0.2s;
+  }
+  .pubs .fg textarea{min-height:140px;resize:vertical;line-height:1.6;}
+  .pubs .fg input:focus,.pubs .fg select:focus,.pubs .fg textarea:focus{
+    outline:none;border-color:var(--pub-acc);box-shadow:0 0 0 3px var(--pub-tag);
+  }
+  .ct-count{display:block;text-align:right;margin-top:0.3rem;font-family:'JetBrains Mono',monospace;font-size:0.67rem;color:var(--pub-fnt);}
+  .pubs .form-submit{
+    font-family:inherit;cursor:pointer;border:0;border-radius:10px;
+    background:var(--pub-acc);color:#fff;font-size:0.82rem;font-weight:700;
+    letter-spacing:0.06em;text-transform:uppercase;padding:0.85rem 1.8rem;transition:all 0.2s;
+  }
+  .pubs .form-submit:hover{box-shadow:0 4px 16px rgba(0,0,0,0.15);transform:translateY(-1px);}
+  .pubs .form-submit:disabled{opacity:0.6;cursor:wait;transform:none;box-shadow:none;}
+  .ct-status{display:none;margin-top:1rem;padding:0.8rem 1rem;border-radius:10px;font-size:0.88rem;line-height:1.6;}
+  .ct-status.ok{display:block;background:var(--pub-tag);color:var(--pub-acc);border:1px solid var(--pub-acc);}
+  .ct-status.err{display:block;color:#b42318;background:rgba(180,35,24,0.08);border:1px solid rgba(180,35,24,0.4);}
+  .ct-status a{color:inherit;font-weight:600;}
+
+  @media (max-width:860px){
+    .ct-grid{grid-template-columns:1fr;}
+  }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP BAR (matches index.html) ── -->
+  <header id="header">
+    <div class="header-inner">
+      <a href="index.html" class="site-title">Md Abu Raihan <span>Research Scholar</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="academics.html">Academics</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="talks.html">Talks</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="variouslinks.html">Various Links</a>
+        <a href="contact.html" class="active">Contact</a>
+      </nav>
+      <button class="burger" id="burger">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- ── MOBILE NAV (matches index.html) ── -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="academics.html">Academics</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="talks.html">Talks</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="variouslinks.html">Various Links</a>
+    <a href="contact.html" class="active">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Contact</div>
+      <h1>Contact</h1>
+      <div class="hero-tags">
+        <span><b> Reach me for-> </b></span> <span>Research Collaboration</span> <span>General Question</span>
+        <span>Speaking Invitation</span> <span>Mentorship</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-main">
+    <div class="ct-grid">
+
+      <!-- ══════════ PART 1: GET IN TOUCH ══════════ -->
+      <div class="card pubs">
+        <h2 class="card-title">Get in Touch</h2>
+        <p style="color:var(--ink2);font-size:.95rem;line-height:1.85;margin-bottom:0;">
+          Find my work, connect professionally, or write to me directly.
+        </p>
+
+        <div class="ct-list">
+          <a class="pub-card ct-link" href="https://scholar.google.com/citations?user=N2UWIOwAAAAJ&amp;hl=en" target="_blank" rel="noopener">
+            <div class="ct-ico">🎓</div>
+            <div class="ct-body"><div class="pub-num">Google Scholar</div><div class="pub-title">Publications &amp; citations</div></div>
+            <span class="ct-go">↗</span>
+          </a>
+
+          <a class="pub-card ct-link" href="https://www.linkedin.com/in/md-abu-raihan-100889238/" target="_blank" rel="noopener">
+            <div class="ct-ico">in</div>
+            <div class="ct-body"><div class="pub-num">LinkedIn</div><div class="pub-title">Professional profile</div></div>
+            <span class="ct-go">↗</span>
+          </a>
+
+          <a class="pub-card ct-link" href="https://www.researchgate.net/profile/Md-Abu-Raihan" target="_blank" rel="noopener">
+            <div class="ct-ico">RG</div>
+            <div class="ct-body"><div class="pub-num">ResearchGate</div><div class="pub-title">Research profile</div></div>
+            <span class="ct-go">↗</span>
+          </a>
+
+          <div class="pub-card ct-link ct-mail">
+            <div class="ct-ico">✉</div>
+            <div class="ct-body"><div class="pub-num">Email</div><div class="pub-title"><a href="mailto:aburaihan908@gmail.com">aburaihan908@gmail.com</a></div></div>
+            <button type="button" class="ct-copy" id="copyMail">Copy</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ══════════ PART 2: CONTACT FORM ══════════ -->
+      <div class="card pubs">
+        <h2 class="card-title">Send a Message</h2>
+
+        <div class="form-card">
+          <form id="contactForm" action="https://formspree.io/f/mlgvpoqg" method="POST">
+
+            <div class="fg">
+              <label for="f-name">Your Name</label>
+              <input id="f-name" type="text" name="name" placeholder="Full name" required/>
+            </div>
+
+            <div class="fg">
+              <label for="f-email">Email</label>
+              <input id="f-email" type="email" name="email" placeholder="your@email.com" required/>
+            </div>
+
+            <div class="fg">
+              <label for="f-subject">Subject</label>
+              <select id="f-subject" name="subject">
+                <option>Research Collaboration</option>
+                <option>General Question</option>
+                <option>Speaking Invitation</option>
+                <option>Mentorship</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div class="fg">
+              <label for="f-msg">Message</label>
+              <textarea id="f-msg" name="message" placeholder="Write your message..." maxlength="2000" required></textarea>
+              <span class="ct-count" id="msgCount">0 / 2000</span>
+            </div>
+
+            <!-- spam trap: real visitors never see or fill this -->
+            <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display:none"/>
+
+            <button class="form-submit" id="sendBtn" type="submit">Send Message</button>
+            <div class="ct-status" id="formStatus" role="status" aria-live="polite"></div>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Md Abu Raihan · <a href="index.html">Home</a></span>
+    </div>
+  </footer>
+
+  <script>
+  var MAIL = 'aburaihan908@gmail.com';
+
+  /* Copy email */
+  document.getElementById('copyMail').addEventListener('click', function(){
+    var b = this;
+    function done(){ b.textContent = 'Copied ✓'; setTimeout(function(){ b.textContent = 'Copy'; }, 1600); }
+    if (navigator.clipboard) { navigator.clipboard.writeText(MAIL).then(done); }
+    else { window.location.href = 'mailto:' + MAIL; }
+  });
+
+  /* Message character counter */
+  var msg = document.getElementById('f-msg'), cnt = document.getElementById('msgCount');
+  msg.addEventListener('input', function(){ cnt.textContent = msg.value.length + ' / 2000'; });
+
+  /* Send through Formspree without leaving the page (falls back to a normal form post if JS is off) */
+  var form = document.getElementById('contactForm'),
+      btn = document.getElementById('sendBtn'),
+      status = document.getElementById('formStatus');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    btn.disabled = true; btn.textContent = 'Sending…'; status.className = 'ct-status';
+    fetch(form.action, { method:'POST', body:new FormData(form), headers:{ 'Accept':'application/json' } })
+      .then(function(r){
+        if (!r.ok) throw new Error('failed');
+        form.reset(); cnt.textContent = '0 / 2000';
+        status.textContent = 'Thank you! Your message has been sent. I will get back to you by email.';
+        status.className = 'ct-status ok';
+      })
+      .catch(function(){
+        status.innerHTML = 'Sorry, the message could not be sent. Please email me directly at <a href="mailto:' + MAIL + '">' + MAIL + '</a>.';
+        status.className = 'ct-status err';
+      })
+      .then(function(){ btn.disabled = false; btn.textContent = 'Send Message'; });
+  });
+  </script>
+  <script src="nav.js"></script>
+</body>
+</html>
