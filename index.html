@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Md Abu Raihan — Academic Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <style>
+    /* ---- Layout: About, then News, then Gallery 1 | Gallery 2 (all full width) ---- */
+    .page-main { max-width: 1800px; width: 100%; margin-left: auto; margin-right: auto; padding-left: clamp(16px, 2.5vw, 40px); padding-right: clamp(16px, 2.5vw, 40px); }
+    .content-cols {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas:
+        "about about"
+        "news  news"
+        "g1    g2";
+      gap: 24px;
+      align-items: start;
+    }
+    .col-mid    { grid-area: about; }
+    .col-side   { grid-area: news; }
+    .col-g1     { grid-area: g1; }
+    .col-g2     { grid-area: g2; }
+
+    /* ---- Image slider ---- */
+    .slider { position: relative; }
+    .slider-window {
+      overflow: hidden;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 8px;
+      background: #e8e8e8;
+    }
+    .slider-track {
+      display: flex;
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+    .slide { flex: 0 0 100%; height: 100%; }
+    .slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .slide.img-missing {
+      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg,#5C6B73,#1F3A5F);
+      color: #fff; font-weight: 600; font-size: 18px;
+    }
+    .slide.img-missing img { display: none; }
+    .slider-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(0,0,0,0.45); color: #fff; border: none;
+      width: 32px; height: 32px; border-radius: 50%; cursor: pointer;
+      font-size: 14px; line-height: 1; z-index: 2;
+    }
+    .slider-arrow:hover { background: rgba(0,0,0,0.7); }
+    .slider-arrow.prev { left: 10px; }
+    .slider-arrow.next { right: 10px; }
+    .slider-dots { display: flex; justify-content: center; gap: 6px; margin-top: 10px; }
+    .slider-dot {
+      width: 8px; height: 8px; border-radius: 50%; background: #ccc;
+      border: none; padding: 0; cursor: pointer;
+    }
+    .slider-dot.active { background: #1F3A5F; }
+
+    .slider-arrow { width: 42px; height: 42px; font-size: 17px; }
+    .slider-arrow.prev { left: 14px; }
+    .slider-arrow.next { right: 14px; }
+    .slider-dot { width: 9px; height: 9px; }
+
+    /* ---- News & Updates: 3 items visible, scroll for the rest ---- */
+    #news .news-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
+    #news .news-head .card-title { margin: 0; }
+    .news-live { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #355C7D; }
+    .news-live i { width: 0.55rem; height: 0.55rem; border-radius: 50%; background: #22a06b; animation: newsPulse 1.8s ease-out infinite; }
+    @keyframes newsPulse { 0% { box-shadow: 0 0 0 0 rgba(34,160,107,0.55); } 70%,100% { box-shadow: 0 0 0 8px rgba(34,160,107,0); } }
+    .news-scroll { position: relative; }
+    .news-scroll.has-more::after {
+      content: '\2193  Scroll for more'; position: absolute; left: 0; right: 14px; bottom: 0; height: 3.4rem;
+      display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0.3rem;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #355C7D;
+      background: linear-gradient(to top, #fff 25%, rgba(255,255,255,0)); border-radius: 0 0 12px 12px; pointer-events: none;
+    }
+    #news .news-list {
+      list-style: none; margin: 0; padding: 0 0.6rem 0 0; position: relative;
+      display: flex; flex-direction: column; gap: 0.8rem;
+      max-height: 24rem; overflow-y: auto; scroll-snap-type: y proximity;
+      scrollbar-width: thin; scrollbar-color: #9fb3c8 transparent;
+    }
+    #news .news-list::-webkit-scrollbar { width: 6px; }
+    #news .news-list::-webkit-scrollbar-thumb { background: #9fb3c8; border-radius: 6px; }
+    #news .news-list li {
+      display: flex; gap: 1.1rem; align-items: flex-start; margin: 0; padding: 1rem 1.2rem;
+      background: #fff; border: 1px solid #e3e8ee; border-radius: 12px;
+      position: relative; overflow: hidden; scroll-snap-align: start; flex: 0 0 auto; transition: all 0.25s;
+    }
+    #news .news-list li::before {
+      content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: #1F3A5F;
+      transform: scaleY(0.35); transform-origin: top; transition: transform 0.25s;
+    }
+    #news .news-list li:hover { box-shadow: 0 4px 20px rgba(31,58,95,0.10); transform: translateX(4px); }
+    #news .news-list li:hover::before { transform: scaleY(1); }
+    #news .news-date {
+      flex: 0 0 4.4rem; display: block; margin: 0; text-align: center; padding: 0.6rem 0.3rem;
+      background: rgba(31,58,95,0.08); border-radius: 10px; color: #5C6B73;
+      font-size: 0.74rem; font-weight: 600; letter-spacing: 0.08em; line-height: 1.3;
+    }
+    #news .news-date b { display: block; font-size: 1.05rem; color: #1F3A5F; letter-spacing: 0.06em; text-transform: uppercase; }
+    #news .news-body { flex: 1; min-width: 0; }
+    .news-type, .news-new {
+      display: inline-block; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.18rem 0.65rem; border-radius: 2rem; margin-right: 0.4rem;
+    }
+    .news-type { background: rgba(53,92,125,0.12); color: #355C7D; }
+    .news-new  { background: #1F3A5F; color: #fff; }
+    #news .news-body p { margin: 0.5rem 0 0; font-size: 0.95rem; line-height: 1.7; color: #444; }
+
+    /* ---- Photo captions (title + details) and photo counter ---- */
+    .slide { position: relative; }
+    .slide-cap {
+      position: absolute; left: 0; right: 0; bottom: 0; z-index: 1;
+      display: flex; flex-direction: column; gap: 0.2rem; text-align: left;
+      padding: 3rem 1.3rem 1.1rem; color: #fff; pointer-events: none;
+      background: linear-gradient(to top, rgba(15,28,46,0.9), rgba(15,28,46,0));
+    }
+    .slide-cap[hidden] { display: none; }
+    .slide-cap strong { font-size: 1.02rem; font-weight: 600; line-height: 1.35; }
+    .slide-cap span {
+      font-size: 0.84rem; line-height: 1.5; opacity: 0.92;
+      display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .slider-count {
+      position: absolute; top: 12px; right: 12px; z-index: 2;
+      background: rgba(0,0,0,0.45); color: #fff; font-size: 0.72rem; letter-spacing: 0.08em;
+      padding: 0.25rem 0.7rem; border-radius: 2rem; pointer-events: none;
+    }
+
+    /* ---- Gentle entrance when the page opens, and a soft zoom on gallery hover ---- */
+    @keyframes riseIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+    .content-cols > * { animation: riseIn 0.6s ease both; }
+    .col-mid  { animation-delay: 0.05s; }
+    .col-side { animation-delay: 0.18s; }
+    .col-g1   { animation-delay: 0.31s; }
+    .col-g2   { animation-delay: 0.44s; }
+    .slide img { transition: transform 0.6s ease; }
+    .slider-window:hover .slide img { transform: scale(1.03); }
+    @media (prefers-reduced-motion: reduce) {
+      .content-cols > * { animation: none; }
+      .news-live i { animation: none; }
+      .slide img { transition: none; }
+    }
+
+    @media (max-width: 700px) {
+      .content-cols {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+          "about"
+          "news"
+          "g1"
+          "g2";
+      }
+      #news .news-list li { gap: 0.8rem; padding: 0.9rem; }
+      #news .news-date { flex-basis: 3.6rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP BAR ── -->
+  <header id="header">
+    <div class="header-inner">
+      <a href="index.html" class="site-title">Md Abu Raihan <span>Research Scholar</span></a>
+      <nav class="main-nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="research.html">Research</a>
+        <a href="academics.html">Academics</a>
+         <a href="teaching.html">Teaching</a>
+        <a href="talks.html">Talks</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="variouslinks.html">Various Links</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="burger" id="burger">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- ── MOBILE NAV ── -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html" class="active">Home</a>
+        <a href="research.html">Research</a>
+        <a href="academics.html">Academics</a>
+         <a href="teaching.html">Teaching</a>
+        <a href="talks.html">Talks</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="variouslinks.html">Various Links</a>
+        <a href="contact.html">Contact</a>
+  </div>
+
+  <!-- ── HERO BANNER ── -->
+  <section class="hero-banner">
+    <div class="hero-content">
+      <div class="hero-photo-col">
+        <!-- Replace src with your photo path -->
+        <div class="photo-frame">
+          <img src="pic_ra_1.jpg" alt="Md Abu Raihan" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"/>
+          <div class="photo-fallback">YN</div>
+        </div>
+      </div>
+      <div class="hero-text-col">
+        <h1 class="hero-name">Md Abu Raihan</h1>
+        <!--p class="hero-degree">PhD, [Your Degree/Specialisation]</p>-->
+        <p class="hero-position"><strong>Doctoral Researcher </strong>, Department of Mathematics</p>
+        <p class="hero-inst">Indian Institute of Technology Kharagpur</p>
+        <!--p class="hero-also">Affiliated Researcher, [Second Institution if any]</p>-->
+        <div class="hero-tags">
+          <span>Algebraic K-theory</span><span>Commutative Algebra</span>
+        </div>
+        <div class="hero-links">
+          <a href="mailto:aburaihan9081@gmil.com" class="hl-btn">✉ Email</a>
+          <a href="https://scholar.google.com/citations?user=N2UWIOwAAAAJ&hl=en" target="_blank" class="hl-btn">Scholar</a>
+          <a href="https://www.linkedin.com/in/md-abu-raihan-100889238/" target="_blank" class="hl-btn">LinkedIn</a>
+          <a href="https://drive.google.com/drive/u/0/folders/1_ZsGp-fdGHKUFinQHFF43W657GV7F40W" class="hl-btn hl-primary">Download CV</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ── MAIN CONTENT ── -->
+<main class="page-main">
+  <div class="content-cols">
+    <!-- MIDDLE COLUMN: ABOUT (WIDER) -->
+    <div class="col-mid">
+      <!-- Bio -->
+      <section class="card" id="bio">
+        <h2 class="card-title">About</h2>
+        <div class="bio-text">
+          <p style="font-size:16px; line-height:1.8; color:#444;">
+            <strong style="color:#1F3A5F;">I</strong> am a Doctoral Researcher under the supervision of
+            <span style="color:#2F4F6F; font-weight:600;">Dr. Husney Parvez Sarwar</span> as a Senior Research Fellow
+            in the Department of Mathematics at
+            <strong style="color:#1F3A5F;">Indian Institute of Technology Kharagpur (IIT Kharagpur)</strong>.
+            I completed my 5-year integrated M.Sc. from
+            <strong style="color:#1F3A5F;">Aliah University (Newtown Campus, Kolkata)</strong>.
+          </p>
+          <p style="font-size:16px; line-height:1.8; color:#444;">
+            My research interest lies in
+            <span style="color:#4A6572; font-weight:600;">commutative algebra</span> and
+            <span style="color:#4A6572; font-weight:600;">algebraic K-theory</span>, with a focus on
+            <span style="color:#355C7D; font-weight:600;">subintegrality and seminormality</span> of ring extensions
+            and their <span style="color:#355C7D; font-weight:600;">K-theoretic invariants</span> — particularly the
+            <span style="color:#5C6B73; font-weight:600;">Picard group</span> and the
+            <span style="color:#5C6B73; font-weight:600;">group of invertible submodules</span>.
+            My thesis extends this framework to extensions of
+            <span style="color:#5C6B73; font-weight:600;">monoid algebras</span>,
+            <span style="color:#5C6B73; font-weight:600;">graded integral domains</span>, and
+            <span style="color:#5C6B73; font-weight:600;">Rees-like algebras</span>, alongside related results on
+            <em>projective modules</em> and <em>Serre dimension</em>.
+          </p>    
+        </div>
+      </section>
+    </div>
+
+    <!-- NEWS & UPDATES: 3 items visible at a time, scroll for the rest.
+         To add news, copy one <li> block to the TOP of the list. -->
+    <div class="col-side">
+      <section class="card news-card" id="news">
+        <div class="news-head">
+          <h2 class="card-title">News &amp; Updates</h2>
+          <span class="news-live"><i></i> Latest</span>
+        </div>
+        <div class="news-scroll" id="newsScroll">
+          <ul class="news-list" id="newsList">
+            <li>
+              <span class="news-date"><b>Apr</b>2026</span>
+              <div class="news-body">
+                <span class="news-type">Paper</span><span class="news-new">New</span>
+                <p>Paper accepted at <strong>Internat. J. Algebra Comput. </strong>- "Existence of unimodular elements and cancellation of projective modules over Rees-like algebras and its various extensions"</p>
+              </div>
+            </li>
+            <li>
+              <span class="news-date"><b>Jul</b>2025</span>
+              <div class="news-body">
+                <span class="news-type">Talk</span>
+                <p>Conference Talks - <strong>Topics Related to Projective Modules </strong>at The Institute of Mathematical Sciences (IMSc), Chennai, India. (July 23-26, 2025)</p>
+              </div>
+            </li>
+            <li>
+              <span class="news-date"><b>Jun</b>2024</span>
+              <div class="news-body">
+                <span class="news-type">Poster</span>
+                <p>Conference Poster - <strong>Lefschetz properties in algebra, geometry, topology and combinatorics </strong>at UKEN, Krakow, Poland (June 23-29, 2024)</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+
+    <!-- GALLERY 1 (gallery1.jpg ... gallery10.jpg). Rename the title as you like.
+         CAPTIONS: under each photo, edit the text inside <strong> (title) and <span> (details),
+         for example: <strong>Conference photo</strong><span>IMSc, Chennai, India · July 2025</span>.
+         Delete both texts to show no caption on that photo. -->
+    <div class="col-g1">
+      <section class="card slider-card">
+        <h2 class="card-title">Gallery 1</h2>
+        <div class="slider" id="photoSlider1">
+          <div class="slider-window">
+            <div class="slider-track">
+              <div class="slide">
+                <img src="gallery1.jpg" alt="Gallery 1 photo 1" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 1 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery2.jpg" alt="Gallery 1 photo 2" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 2 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery3.jpg" alt="Gallery 1 photo 3" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 3 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery4.jpg" alt="Gallery 1 photo 4" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 4 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery5.jpg" alt="Gallery 1 photo 5" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 5 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery6.jpg" alt="Gallery 1 photo 6" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 6 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery7.jpg" alt="Gallery 1 photo 7" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 7 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery8.jpg" alt="Gallery 1 photo 8" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 8 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery9.jpg" alt="Gallery 1 photo 9" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 9 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery10.jpg" alt="Gallery 1 photo 10" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 10 title</strong><span>Event, place, month year</span></div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-arrow prev" type="button" aria-label="Previous photo">&#10094;</button>
+          <button class="slider-arrow next" type="button" aria-label="Next photo">&#10095;</button>
+          <div class="slider-count"></div>
+          <div class="slider-dots"></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- GALLERY 2 (gallery11.jpg ... gallery20.jpg) -->
+    <div class="col-g2">
+      <section class="card slider-card">
+        <h2 class="card-title">Gallery 2</h2>
+        <div class="slider" id="photoSlider2">
+          <div class="slider-window">
+            <div class="slider-track">
+              <div class="slide">
+                <img src="gallery11.jpg" alt="Gallery 2 photo 1" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 1 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery12.jpg" alt="Gallery 2 photo 2" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 2 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery13.jpg" alt="Gallery 2 photo 3" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 3 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery14.jpg" alt="Gallery 2 photo 4" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 4 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery15.jpg" alt="Gallery 2 photo 5" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 5 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery16.jpg" alt="Gallery 2 photo 6" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 6 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery17.jpg" alt="Gallery 2 photo 7" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 7 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery18.jpg" alt="Gallery 2 photo 8" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 8 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery19.jpg" alt="Gallery 2 photo 9" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 9 title</strong><span>Event, place, month year</span></div>
+              </div>
+              <div class="slide">
+                <img src="gallery20.jpg" alt="Gallery 2 photo 10" loading="lazy" onerror="this.parentElement.classList.add('img-missing')">
+                <div class="slide-cap"><strong>Photo 10 title</strong><span>Event, place, month year</span></div>
+              </div>
+            </div>
+          </div>
+          <button class="slider-arrow prev" type="button" aria-label="Previous photo">&#10094;</button>
+          <button class="slider-arrow next" type="button" aria-label="Next photo">&#10095;</button>
+          <div class="slider-count"></div>
+          <div class="slider-dots"></div>
+        </div>
+      </section>
+    </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Md Abu Raihan · <a href="index.html">Indian Institute of Technology Kharagpur</a></span>
+      <!--span>Built with GitHub Pages</span>-->
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+  <script>
+  /* News: show exactly 3 items at a time; the rest by scrolling */
+  (function(){
+    var list = document.getElementById('newsList'), wrap = document.getElementById('newsScroll');
+    if (!list) return;
+    function flag(){ wrap.classList.toggle('has-more', list.scrollHeight - list.clientHeight - list.scrollTop > 4); }
+    function size(){
+      var it = list.children;
+      list.style.maxHeight = it.length > 3 ? (it[2].offsetTop + it[2].offsetHeight - it[0].offsetTop) + 'px' : 'none';
+      flag();
+    }
+    list.addEventListener('scroll', flag);
+    window.addEventListener('resize', size);
+    window.addEventListener('load', size);
+    size();
+  })();
+
+  /* Hide the caption of any photo whose caption text is empty */
+  document.querySelectorAll('.slide-cap').forEach(function(c){ if (!c.textContent.trim()) c.hidden = true; });
+
+  /* Independent sliders: arrows + auto-built dots */
+  document.querySelectorAll('.slider').forEach(function(sl){
+    var track = sl.querySelector('.slider-track'),
+        box = sl.querySelector('.slider-dots'), cnt = sl.querySelector('.slider-count'),
+        n = track.children.length, i = 0, dots = [];
+    function go(k){
+      i = (k + n) % n;
+      track.style.transform = 'translateX(-' + (i * 100) + '%)';
+      cnt.textContent = (i + 1) + ' / ' + n;
+      dots.forEach(function(d, j){ d.classList.toggle('active', j === i); });
+    }
+    for (var k = 0; k < n; k++) {
+      (function(k){
+        var b = document.createElement('button');
+        b.type = 'button'; b.className = 'slider-dot';
+        b.setAttribute('aria-label', 'Go to photo ' + (k + 1));
+        b.addEventListener('click', function(){ go(k); });
+        box.appendChild(b); dots.push(b);
+      })(k);
+    }
+    sl.querySelector('.prev').addEventListener('click', function(){ go(i - 1); });
+    sl.querySelector('.next').addEventListener('click', function(){ go(i + 1); });
+    go(0);
+  });
+  </script>
+</body>
+</html>
