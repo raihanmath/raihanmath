@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Various Links — Md Abu Raihan</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+  /* ══════════════════════════════════════
+     VARIOUS LINKS — same base theme as the Research page.
+     Each category adds its own accent color (--cat).
+  ══════════════════════════════════════ */
+
+  /* >>> COLOR MAPPING (identical to research.html) <<< */
+  .pubs{
+    --pub-txt:  var(--ink,    var(--ink2));
+    --pub-mut:  var(--ink2);
+    --pub-fnt:  var(--ink3);
+    --pub-acc:  var(--accent, var(--primary, var(--gold, #1a56db)));
+    --pub-acc2: var(--accent2, var(--pub-acc));
+    --pub-surf: var(--surface, var(--card-bg, #ffffff));
+    --pub-brd:  var(--border, var(--line, #e3e3e3));
+    --pub-tag:  color-mix(in srgb, var(--pub-acc) 12%, transparent);
+    --pub-tagt: var(--pub-acc);
+  }
+
+  /* >>> CATEGORY COLORS: edit freely <<< */
+  .cat[data-cat="video"]   {--cat:#dc2626;}   /* red    */
+  .cat[data-cat="tools"]   {--cat:#7c3aed;}   /* violet */
+  .cat[data-cat="research"]{--cat:#0d9488;}   /* teal   */
+  .cat[data-cat="qa"]      {--cat:#d97706;}   /* amber  */
+  .cat[data-cat="lib"]     {--cat:#2563eb;}   /* blue   */
+  .cat[data-cat="upcoming"]{--cat:#c026d3;}   /* fuchsia */
+  .cat[data-cat="reference"]{--cat:#65a30d;}  /* lime   */
+  .cat[data-cat="jobs"]    {--cat:#475569;}   /* slate  */
+
+  /* Search + filter */
+  .lk-search{
+    width:100%;font-family:inherit;font-size:0.92rem;color:var(--pub-txt);
+    background:var(--pub-surf);border:1px solid var(--pub-brd);border-radius:10px;
+    padding:0.8rem 1rem;margin-top:1.1rem;transition:border-color 0.2s,box-shadow 0.2s;
+  }
+  .lk-search:focus{outline:none;border-color:var(--pub-acc);box-shadow:0 0 0 3px var(--pub-tag);}
+  .chips{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:1rem;}
+  .chip{
+    font-family:inherit;cursor:pointer;background:var(--pub-surf);border:1px solid var(--pub-brd);
+    color:var(--pub-fnt);font-size:0.72rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;
+    padding:0.45rem 0.95rem;border-radius:2rem;transition:all 0.2s;
+  }
+  .chip:hover{color:var(--pub-acc);border-color:var(--pub-acc);}
+  .chip.active{background:var(--pub-acc);border-color:var(--pub-acc);color:#fff;}
+  .chip:focus-visible{outline:2px solid var(--pub-acc);outline-offset:2px;}
+  .chip i{font-style:normal;font-family:'JetBrains Mono',monospace;font-weight:500;margin-left:0.25rem;opacity:0.8;}
+
+  /* Category heading */
+  .cat .card-title{display:flex;align-items:center;gap:0.7rem;}
+  .cat .card-title::before{content:'';width:0.7rem;height:0.7rem;border-radius:50%;background:var(--cat);flex:none;}
+  .cat-sub{color:var(--pub-mut);font-size:0.9rem;line-height:1.7;margin:0;}
+
+  /* Link cards */
+  .lk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.1rem;}
+  .lk{
+    --cat-tag:color-mix(in srgb, var(--cat) 12%, transparent);
+    display:flex;flex-direction:column;gap:0.5rem;
+    background:var(--pub-surf);border:1px solid var(--pub-brd);border-radius:12px;
+    padding:1.2rem 1.3rem;position:relative;overflow:hidden;transition:all 0.25s;
+  }
+  .lk::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--cat);
+    transform:scaleY(0.35);transform-origin:top;transition:transform 0.25s;
+  }
+  .lk:hover::before{transform:scaleY(1);}
+  .lk:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);transform:translateY(-2px);}
+  .lk-top{display:flex;align-items:center;justify-content:space-between;gap:0.6rem;}
+  .lk-tag{
+    font-size:0.64rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;
+    padding:0.2rem 0.65rem;border-radius:2rem;background:var(--cat-tag);color:var(--cat);
+  }
+  .lk-dom{font-family:'JetBrains Mono',monospace;font-size:0.66rem;color:var(--pub-fnt);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .lk .pub-title{font-size:0.97rem;font-weight:600;color:var(--pub-txt);line-height:1.5;margin:0;}
+  .lk-desc{font-size:0.82rem;color:var(--pub-mut);line-height:1.65;margin:0;}
+  .lk-btn{
+    margin-top:auto;align-self:flex-start;text-decoration:none;
+    background:var(--cat);color:#fff;font-size:0.72rem;font-weight:700;letter-spacing:0.06em;
+    text-transform:uppercase;padding:0.55rem 1.1rem;border-radius:10px;transition:all 0.2s;
+  }
+  .lk-btn:hover{box-shadow:0 4px 14px rgba(0,0,0,0.18);transform:translateY(-1px);}
+  .lk-btn:focus-visible{outline:2px solid var(--cat);outline-offset:2px;}
+  .lk-none{display:none;text-align:center;color:var(--pub-fnt);font-size:0.92rem;padding:1rem 0;}
+  .lk-more{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+
+  .lk-sub{display:flex;align-items:center;gap:0.8rem;margin:1.5rem 0 0;font-family:'JetBrains Mono',monospace;font-size:0.72rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--pub-fnt);}
+  .lk-sub::after{content:'';flex:1;border-top:1px dashed var(--pub-brd);}
+
+  @media (max-width:700px){
+    .lk-grid{grid-template-columns:1fr;}
+  }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP BAR (matches index.html) ── -->
+  <header id="header">
+    <div class="header-inner">
+      <a href="index.html" class="site-title">Md Abu Raihan <span>Research Scholar</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="academics.html">Academics</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="talks.html">Talks</a>
+        <a href="achievements.html">Achievements</a>
+        <a href="variouslinks.html" class="active">Various Links</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="burger" id="burger">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- ── MOBILE NAV (matches index.html) ── -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="academics.html">Academics</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="talks.html">Talks</a>
+    <a href="achievements.html">Achievements</a>
+    <a href="variouslinks.html" class="active">Various Links</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Various Links</div>
+      <h1>Various Links</h1>
+      <div class="hero-tags">
+        <span><b> Browse-> </b></span> <span>Upcoming Conferences</span> <span>Courses &amp; Videos</span> <span>LaTeX Tools</span>
+        <span>Databases</span> <span>Reference</span> <span>Jobs</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-main">
+
+    <!-- ══════════ FIND A LINK ══════════ -->
+    <div class="card pubs">
+      <h2 class="card-title">Find a Link</h2>
+      <p style="color:var(--ink2);font-size:.95rem;line-height:1.85;margin-bottom:0;">
+        Resources I find useful for learning and research in mathematics. Search, or pick a category.
+      </p>
+      <input class="lk-search" id="q" type="search" placeholder="Search links (for example: arXiv, LaTeX, category)…" aria-label="Search links"/>
+      <div class="chips" id="chips">
+        <button type="button" class="chip active" data-cat="all">All <i></i></button>
+        <button type="button" class="chip" data-cat="upcoming">Upcoming <i></i></button>
+        <button type="button" class="chip" data-cat="video">Courses &amp; Videos <i></i></button>
+        <button type="button" class="chip" data-cat="tools">LaTeX Tools <i></i></button>
+        <button type="button" class="chip" data-cat="research">Databases <i></i></button>
+        <button type="button" class="chip" data-cat="reference">Reference <i></i></button>
+        <button type="button" class="chip" data-cat="qa">Q&amp;A <i></i></button>
+        <button type="button" class="chip" data-cat="lib">Libraries &amp; Exams <i></i></button>
+        <button type="button" class="chip" data-cat="jobs">Jobs <i></i></button>
+      </div>
+    </div>
+
+    <!-- ══════════ UPCOMING CONFERENCES ══════════ -->
+    <section class="card pubs cat" data-cat="upcoming">
+      <h2 class="card-title">Upcoming Conferences</h2>
+      <p class="cat-sub">Conferences and workshops to watch. Replace the sample card with your own events (copy the block for each new one).</p>
+      <div class="lk-grid">
+        <!-- SAMPLE ENTRY: edit the text and replace href="#" with the event page -->
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Sample · Upcoming</span><span class="lk-dom">Month DD–DD, YYYY</span></div>
+          <div class="pub-title">Conference / Workshop Title</div>
+          <p class="lk-desc">City, Country · A one-line description of the event.</p>
+          <a class="lk-btn" href="#">Event page ↗</a>
+        </div>
+      </div>
+      <div class="lk-sub">Find more conferences</div>
+      <div class="lk-grid">
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Listing</span><span class="lk-dom">mathmeetings.net</span></div>
+          <div class="pub-title">MathMeetings</div>
+          <p class="lk-desc">Listing of mathematics conferences and meetings.</p>
+          <a class="lk-btn" href="https://mathmeetings.net/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Listing</span><span class="lk-dom">commalg.org</span></div>
+          <div class="pub-title">Commutative Algebra Conferences</div>
+          <p class="lk-desc">Commutative algebra conferences and events.</p>
+          <a class="lk-btn" href="https://www.commalg.org/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Listing</span><span class="lk-dom">conference-service.com</span></div>
+          <div class="pub-title">Algebra Conferences</div>
+          <p class="lk-desc">List of conferences in algebra.</p>
+          <a class="lk-btn" href="https://conference-service.com/conferences/algebra.html" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Listing</span><span class="lk-dom">math.stanford.edu</span></div>
+          <div class="pub-title">Algebraic Geometry Conferences</div>
+          <p class="lk-desc">List of conferences in algebraic geometry.</p>
+          <a class="lk-btn" href="https://math.stanford.edu/~vakil/conferences.html" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ VIDEO LECTURES ══════════ -->
+    <section class="card pubs cat" data-cat="video">
+      <h2 class="card-title">Courses &amp; Video Lectures</h2>
+      <div class="lk-grid">
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Video</span><span class="lk-dom">youtu.be</span></div>
+          <div class="pub-title">What is Category Theory?</div>
+          <p class="lk-desc">An introduction to category theory on YouTube.</p>
+          <a class="lk-btn" href="https://youtu.be/eXBwU9ieLL0" target="_blank" rel="noopener">Watch ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Video</span><span class="lk-dom">youtube.com</span></div>
+          <div class="pub-title">Category Theory in Life</div>
+          <p class="lk-desc">Category theory in everyday life, on YouTube.</p>
+          <a class="lk-btn" href="https://www.youtube.com/watch?v=ho7oagHeqNc" target="_blank" rel="noopener">Watch ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Courses</span><span class="lk-dom">nptel.ac.in</span></div>
+          <div class="pub-title">NPTEL Courses</div>
+          <p class="lk-desc">Video and web courses from NPTEL.</p>
+          <a class="lk-btn" href="https://nptel.ac.in/courses" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Schools</span><span class="lk-dom">atmschools.org</span></div>
+          <div class="pub-title">NCM-ATM Schools</div>
+          <p class="lk-desc">Advanced Training in Mathematics (ATM) schools by the National Centre for Mathematics.</p>
+          <a class="lk-btn" href="https://www.atmschools.org/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ LATEX & DIAGRAM TOOLS ══════════ -->
+    <section class="card pubs cat" data-cat="tools">
+      <h2 class="card-title">LaTeX &amp; Diagram Tools</h2>
+      <div class="lk-grid">
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Tool</span><span class="lk-dom">tikzcd.yichuanshen.de</span></div>
+          <div class="pub-title">Drawing commutative diagrams in LaTeX</div>
+          <p class="lk-desc">tikzcd editor: draw a commutative diagram and copy the LaTeX code.</p>
+          <a class="lk-btn" href="https://tikzcd.yichuanshen.de/#N4Igdg9gJgpgziAXAbVABwnAlgFyxMJZABgBpiBdUkANwEMAbAVxiRAEEQBfU9TXfIRQBGclVqMWbAELdeIDNjwEiZYePrNWiEAGE5fJYKKj11TVJ0ARbuJhQA5vCKgAZgCcIAWyRkQOCCRRfzosBjYACwgIAGsDEA9vX2oApAAmajgIrFccXx43Tx9EYNTEAGYChKL0lMCK6gYsMG0QKAgcHHtbLiA" target="_blank" rel="noopener">Open tool ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Tool</span><span class="lk-dom">q.uiver.app</span></div>
+          <div class="pub-title">Quiver</div>
+          <p class="lk-desc">Online editor for commutative diagrams, with LaTeX export.</p>
+          <a class="lk-btn" href="https://q.uiver.app/" target="_blank" rel="noopener">Open tool ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ RESEARCH DATABASES ══════════ -->
+    <section class="card pubs cat" data-cat="research">
+      <h2 class="card-title">Research Databases</h2>
+      <div class="lk-grid">
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Database</span><span class="lk-dom">mathscinet.ams.org</span></div>
+          <div class="pub-title">MathSciNet</div>
+          <p class="lk-desc">AMS database of reviews and bibliographic data for mathematics.</p>
+          <a class="lk-btn" href="https://mathscinet.ams.org/mathscinet/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Preprints</span><span class="lk-dom">arxiv.org</span></div>
+          <div class="pub-title">Math arXiv</div>
+          <p class="lk-desc">Preprints in mathematics on arXiv.</p>
+          <a class="lk-btn" href="https://arxiv.org/archive/math" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Database</span><span class="lk-dom">webofscience.com</span></div>
+          <div class="pub-title">Web of Science</div>
+          <p class="lk-desc">Citation database for searching journals and citations.</p>
+          <a class="lk-btn" href="https://www.webofscience.com/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Database</span><span class="lk-dom">mathgenealogy.org</span></div>
+          <div class="pub-title">Mathematics Genealogy Project</div>
+          <p class="lk-desc">Academic family trees: advisors and students of mathematicians.</p>
+          <a class="lk-btn" href="https://www.mathgenealogy.org/index.php" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Tool</span><span class="lk-dom">connectedpapers.com</span></div>
+          <div class="pub-title">Connected Papers</div>
+          <p class="lk-desc">Visual graph of papers related to a paper you choose.</p>
+          <a class="lk-btn" href="https://www.connectedpapers.com/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ REFERENCE & NOTES ══════════ -->
+    <section class="card pubs cat" data-cat="reference">
+      <h2 class="card-title">Reference &amp; Notes</h2>
+      <div class="lk-grid">
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Reference</span><span class="lk-dom">stacks.math.columbia.edu</span></div>
+          <div class="pub-title">The Stacks Project</div>
+          <p class="lk-desc">Open-source reference on algebraic stacks and algebraic geometry.</p>
+          <a class="lk-btn" href="https://stacks.math.columbia.edu/browse" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Notes</span><span class="lk-dom">therisingsea.org</span></div>
+          <div class="pub-title">The Rising Sea</div>
+          <p class="lk-desc">Online notes on the foundations of algebraic geometry.</p>
+          <a class="lk-btn" href="http://therisingsea.org/post/notes/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Reference</span><span class="lk-dom">mathworld.wolfram.com</span></div>
+          <div class="pub-title">Wolfram MathWorld</div>
+          <p class="lk-desc">Online mathematics encyclopedia.</p>
+          <a class="lk-btn" href="https://mathworld.wolfram.com/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ Q&A COMMUNITY ══════════ -->
+    <section class="card pubs cat" data-cat="qa">
+      <h2 class="card-title">Q&amp;A Community</h2>
+      <div class="lk-grid">
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Community</span><span class="lk-dom">math.stackexchange.com</span></div>
+          <div class="pub-title">Mathematics Stack Exchange</div>
+          <p class="lk-desc">Question-and-answer site for mathematics.</p>
+          <a class="lk-btn" href="https://math.stackexchange.com/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ LIBRARIES & EXAM PAPERS ══════════ -->
+    <section class="card pubs cat" data-cat="lib">
+      <h2 class="card-title">Libraries &amp; Exam Papers</h2>
+      <div class="lk-grid">
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Library</span><span class="lk-dom">ndl.iitkgp.ac.in</span></div>
+          <div class="pub-title">National Digital Library of India</div>
+          <p class="lk-desc">Digital library of books and learning resources.</p>
+          <a class="lk-btn" href="https://ndl.iitkgp.ac.in/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Question papers</span><span class="lk-dom">imsc.res.in</span></div>
+          <div class="pub-title">NBHM previous years' question papers</div>
+          <p class="lk-desc">Past question papers of the National Board for Higher Mathematics.</p>
+          <a class="lk-btn" href="https://www.imsc.res.in/~nbhm/qp/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════ JOBS & OPPORTUNITIES ══════════ -->
+    <section class="card pubs cat" data-cat="jobs">
+      <h2 class="card-title">Jobs &amp; Opportunities</h2>
+      <div class="lk-grid">
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Jobs</span><span class="lk-dom">mathjobs.org</span></div>
+          <div class="pub-title">MathJobs</div>
+          <p class="lk-desc">Academic mathematics job listings.</p>
+          <a class="lk-btn" href="https://www.mathjobs.org/jobs" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+        <div class="lk">
+          <div class="lk-top"><span class="lk-tag">Jobs</span><span class="lk-dom">researchersjob.com</span></div>
+          <div class="pub-title">ResearchersJob</div>
+          <p class="lk-desc">Job listings for researchers.</p>
+          <a class="lk-btn" href="https://researchersjob.com/" target="_blank" rel="noopener">Open ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="lk-none" id="none">No links match your search.</div>
+
+    <!-- ══════════ MORE LINKS ══════════ -->
+    <div class="card pubs">
+      <div class="lk-more">
+        <div>
+          <h2 class="card-title" style="margin-bottom:.3rem;">Looking for more?</h2>
+          <p class="cat-sub">Many of the links above come from Dr. C. Bhaumik's Maths Link page.</p>
+        </div>
+        <a class="lk-btn" style="--cat:var(--pub-acc);margin-top:0;" href="https://sites.google.com/view/chandan-bhaumik/maths-link" target="_blank" rel="noopener">Source page ↗</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Md Abu Raihan · <a href="index.html">Home</a></span>
+    </div>
+  </footer>
+
+  <script>
+  (function(){
+    var chips = Array.from(document.querySelectorAll('.chip')),
+        cats  = Array.from(document.querySelectorAll('.cat')),
+        q     = document.getElementById('q'),
+        none  = document.getElementById('none'),
+        current = 'all';
+
+    /* Counts on the chips */
+    chips.forEach(function(ch){
+      var k = ch.dataset.cat === 'all'
+        ? document.querySelectorAll('.lk').length
+        : document.querySelectorAll('.cat[data-cat="' + ch.dataset.cat + '"] .lk').length;
+      ch.querySelector('i').textContent = k;
+    });
+
+    function apply(){
+      var t = q.value.trim().toLowerCase(), shown = 0;
+      cats.forEach(function(c){
+        var inCat = current === 'all' || c.dataset.cat === current, vis = 0;
+        c.querySelectorAll('.lk').forEach(function(l){
+          var ok = inCat && (!t || l.textContent.toLowerCase().indexOf(t) > -1);
+          l.style.display = ok ? '' : 'none';
+          if (ok) vis++;
+        });
+        c.style.display = vis ? '' : 'none';
+        shown += vis;
+      });
+      none.style.display = shown ? 'none' : 'block';
+    }
+
+    chips.forEach(function(ch){
+      ch.addEventListener('click', function(){
+        current = ch.dataset.cat;
+        chips.forEach(function(x){ x.classList.remove('active'); });
+        ch.classList.add('active');
+        apply();
+      });
+    });
+    q.addEventListener('input', apply);
+  })();
+  </script>
+  <script src="nav.js"></script>
+</body>
+</html>
