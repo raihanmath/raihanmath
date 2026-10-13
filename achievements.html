@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Achievements — Md Abu Raihan</title>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+
+  <style>
+  /* ══════════════════════════════════════
+     ACHIEVEMENTS — same look and colors as the Research page
+  ══════════════════════════════════════ */
+
+  /* >>> COLOR MAPPING (identical to research.html) <<< */
+  .pubs{
+    --pub-txt:  var(--ink,    var(--ink2));
+    --pub-mut:  var(--ink2);
+    --pub-fnt:  var(--ink3);
+    --pub-acc:  var(--accent, var(--primary, var(--gold, #1a56db)));
+    --pub-acc2: var(--accent2, var(--pub-acc));
+    --pub-surf: var(--surface, var(--card-bg, #ffffff));
+    --pub-brd:  var(--border, var(--line, #e3e3e3));
+    --pub-tag:  color-mix(in srgb, var(--pub-acc) 12%, transparent);
+    --pub-tagt: var(--pub-acc);
+  }
+
+  .pub-tabs{display:flex;border-bottom:2px solid var(--pub-brd);margin-bottom:2rem;overflow-x:auto;transition:border-color 0.4s;}
+  .pub-tab{
+    font-family:inherit;background:none;border:0;border-bottom:2px solid transparent;
+    font-size:0.77rem;font-weight:700;letter-spacing:0.05em;text-transform:uppercase;
+    color:var(--pub-fnt);padding:0.8rem 1.4rem;cursor:pointer;white-space:nowrap;
+    margin-bottom:-2px;transition:all 0.2s;
+  }
+  .pub-tab:hover{color:var(--pub-acc);}
+  .pub-tab:focus-visible{outline:2px solid var(--pub-acc);outline-offset:-2px;}
+  .pub-tab.active{color:var(--pub-acc);border-bottom-color:var(--pub-acc);}
+  .pub-sec{display:none;flex-direction:column;gap:1.2rem;}
+  .pub-sec.active{display:flex;}
+  .pub-card{
+    background:var(--pub-surf);border:1px solid var(--pub-brd);
+    border-radius:12px;padding:1.6rem 1.8rem;
+    position:relative;overflow:hidden;transition:all 0.25s;
+  }
+  .pub-card::before{
+    content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+    background:var(--pub-acc);border-radius:4px 0 0 4px;
+    transform:scaleY(0);transition:transform 0.25s;
+  }
+  .pub-card:hover::before{transform:scaleY(1);}
+  .pub-card:hover{box-shadow:0 4px 20px rgba(0,0,0,0.07);transform:translateX(4px);}
+  .pub-num{font-family:'JetBrains Mono',monospace;font-size:0.67rem;letter-spacing:0.12em;color:var(--pub-acc);text-transform:uppercase;margin-bottom:0.5rem;}
+  .pub-title{font-size:0.97rem;font-weight:600;color:var(--pub-txt);line-height:1.55;margin-bottom:0.4rem;}
+  .pub-venue{font-size:0.82rem;color:var(--pub-fnt);margin-bottom:0.5rem;}
+  .pub-badge{
+    display:inline-block;font-size:0.68rem;font-weight:700;letter-spacing:0.08em;
+    text-transform:uppercase;padding:0.22rem 0.7rem;border-radius:2rem;
+    background:var(--pub-tag);color:var(--pub-tagt);transition:all 0.25s;text-decoration:none;
+  }
+
+  /* Achievements extras */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:1.2rem;}
+  .stat{background:var(--pub-surf);border:1px solid var(--pub-brd);border-radius:12px;padding:1rem;text-align:center;}
+  .stat b{display:block;font-family:'JetBrains Mono',monospace;font-size:1.7rem;font-weight:500;color:var(--pub-acc);}
+  .stat span{font-size:0.68rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--pub-fnt);}
+  .yr{display:flex;align-items:center;gap:0.8rem;font-family:'JetBrains Mono',monospace;font-size:0.75rem;letter-spacing:0.14em;color:var(--pub-fnt);text-transform:uppercase;}
+  .yr::after{content:'';flex:1;border-top:1px dashed var(--pub-brd);}
+  .pub-card.ev{display:flex;gap:1.4rem;align-items:flex-start;}
+  .ev-date{flex:0 0 5.6rem;text-align:center;background:var(--pub-tag);border-radius:10px;padding:0.7rem 0.4rem;}
+  .ev-date b{display:block;font-family:'JetBrains Mono',monospace;font-size:0.82rem;font-weight:500;color:var(--pub-acc);line-height:1.35;}
+  .ev-date span{font-family:'JetBrains Mono',monospace;font-size:0.68rem;letter-spacing:0.1em;color:var(--pub-fnt);}
+  .ev-body{flex:1;min-width:0;}
+  .ev-tags{display:flex;flex-wrap:wrap;gap:0.5rem;margin-top:0.2rem;}
+  @media (max-width:600px){
+    .pub-tab{padding:0.8rem 0.9rem;}
+    .pub-card{padding:1.3rem 1.2rem;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .pub-card.ev{flex-direction:column;gap:0.8rem;}
+    .ev-date{flex:none;display:flex;gap:0.6rem;align-items:baseline;padding:0.4rem 0.8rem;}
+  }
+  </style>
+</head>
+<body>
+
+  <!-- ── TOP BAR (matches index.html) ── -->
+  <header id="header">
+    <div class="header-inner">
+      <a href="index.html" class="site-title">Md Abu Raihan <span>Research Scholar</span></a>
+      <nav class="main-nav">
+        <a href="index.html">Home</a>
+        <a href="research.html">Research</a>
+        <a href="academics.html">Academics</a>
+        <a href="teaching.html">Teaching</a>
+        <a href="talks.html">Talks</a>
+        <a href="achievements.html" class="active">Achievements</a>
+        <a href="variouslinks.html">Various Links</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+      <button class="burger" id="burger">&#9776;</button>
+    </div>
+  </header>
+
+  <!-- ── MOBILE NAV (matches index.html) ── -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="research.html">Research</a>
+    <a href="academics.html">Academics</a>
+    <a href="teaching.html">Teaching</a>
+    <a href="talks.html">Talks</a>
+    <a href="achievements.html" class="active">Achievements</a>
+    <a href="variouslinks.html">Various Links</a>
+    <a href="contact.html">Contact</a>
+  </div>
+
+  <div class="page-hero">
+    <div class="page-hero-inner">
+      <div class="breadcrumb"><a href="index.html">Home</a> › Achievements</div>
+      <h1>Achievements</h1>
+      <div class="hero-tags">
+        <span><b> Highlights-> </b></span> <span>CSIR Fellowship</span> <span>AIR 135</span> <span>CSIR NET–JRF</span>
+        <span>GATE 2019</span> <span>IIT JAM</span> <span>SET</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="page-main">
+
+    <!-- ══════════ HIGHLIGHTS ══════════ -->
+    <div class="card pubs">
+      <h2 class="card-title">Highlights</h2>
+      <div class="stats">
+        <div class="stat"><b>AIR 135</b><span>CSIR Fellowship 2020</span></div>
+        <div class="stat"><b>1st</b><span>B.Sc. · Aliah University</span></div>
+        <div class="stat"><b>2nd</b><span>M.Sc. · Aliah University</span></div>
+        <div class="stat"><b id="st-exam">4</b><span>Competitive exams qualified</span></div>
+      </div>
+    </div>
+
+    <!-- ══════════ GRANTS / EXAMS / SCHOLARSHIPS ══════════ -->
+    <div class="card pubs">
+      <h2 class="card-title">Grants, Exams &amp; Scholarships</h2>
+
+      <div class="pub-tabs" role="tablist">
+        <button type="button" class="pub-tab active" data-tab="grants" onclick="switchTab('grants',this)">Grants <span class="pub-count"></span></button>
+        <button type="button" class="pub-tab" data-tab="exams" onclick="switchTab('exams',this)">Exams Qualified <span class="pub-count"></span></button>
+        <button type="button" class="pub-tab" data-tab="schol" onclick="switchTab('schol',this)">Scholarships <span class="pub-count"></span></button>
+      </div>
+
+      <!-- ───── GRANTS ───── -->
+      <div class="pub-sec active" id="tab-grants">
+        <div class="pub-card ev">
+          <div class="ev-date"><b>≈ ₹1.5L</b><span>Travel</span></div>
+          <div class="ev-body">
+            <div class="pub-num">Travel Grant · IIT Kharagpur</div>
+            <div class="pub-title">Travel grant to participate in the international conference in Poland</div>
+            <div class="pub-venue">Awarded by Indian Institute of Technology Kharagpur</div>
+            <div class="ev-tags"><span class="pub-badge">Approx. ₹1.5 lakh</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ───── EXAMS QUALIFIED ───── -->
+      <div class="pub-sec" id="tab-exams">
+
+        <div class="yr">Academic Rank</div>
+        <div class="pub-card ev">
+          <div class="ev-date"><b>2nd</b><span>M.Sc.</span></div>
+          <div class="ev-body">
+            <div class="pub-num">Academic Rank · Aliah University</div>
+            <div class="pub-title">Second position at M.Sc., Aliah University</div>
+          </div>
+        </div>
+        <div class="pub-card ev">
+          <div class="ev-date"><b>1st</b><span>B.Sc.</span></div>
+          <div class="ev-body">
+            <div class="pub-num">Academic Rank · Aliah University</div>
+            <div class="pub-title">First position at B.Sc., Aliah University</div>
+          </div>
+        </div>
+
+        <div class="yr">2020</div>
+        <div class="pub-card ev" data-type="exam">
+          <div class="ev-date"><b>SET</b><span>2020</span></div>
+          <div class="ev-body">
+            <div class="pub-num">Qualified · Mathematics</div>
+            <div class="pub-title">SET (State Eligibility Test) in Mathematics, 2020</div>
+          </div>
+        </div>
+
+        <div class="yr">2019</div>
+        <div class="pub-card ev" data-type="exam">
+          <div class="ev-date"><b>NET–JRF</b><span>Jun 2019</span></div>
+          <div class="ev-body">
+            <div class="pub-num">Qualified · Mathematics</div>
+            <div class="pub-title">CSIR NET–JRF in Mathematics, June 2019</div>
+          </div>
+        </div>
+        <div class="pub-card ev" data-type="exam">
+          <div class="ev-date"><b>GATE</b><span>2019</span></div>
+          <div class="ev-body">
+            <div class="pub-num">Qualified · Mathematics</div>
+            <div class="pub-title">GATE-2019 in Mathematics</div>
+          </div>
+        </div>
+
+        <div class="yr">2017</div>
+        <div class="pub-card ev" data-type="exam">
+          <div class="ev-date"><b>JAM</b><span>2017</span></div>
+          <div class="ev-body">
+            <div class="pub-num">Qualified · Mathematics</div>
+            <div class="pub-title">IIT JAM in Mathematics, 2017</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ───── SCHOLARSHIPS ───── -->
+      <div class="pub-sec" id="tab-schol">
+        <div class="pub-card ev">
+          <div class="ev-date"><b>AIR 135</b><span>2020</span></div>
+          <div class="ev-body">
+            <div class="pub-num">Fellowship · Government of India · 2020</div>
+            <div class="pub-title">Council of Scientific and Industrial Research (CSIR) Fellowship</div>
+            <div class="pub-venue">Awarded by the Govt. of India, with All India Rank (AIR) 135</div>
+            <div class="ev-tags"><span class="pub-badge">AIR 135</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <span>© 2026 Md Abu Raihan · <a href="index.html">Home</a></span>
+    </div>
+  </footer>
+
+  <script>
+  function switchTab(name, el){
+    document.querySelectorAll('.pub-sec').forEach(function(s){ s.classList.remove('active'); });
+    document.querySelectorAll('.pub-tab').forEach(function(t){ t.classList.remove('active'); });
+    var panel = document.getElementById('tab-' + name);
+    if (panel) panel.classList.add('active');
+    if (el) el.classList.add('active');
+  }
+  /* Tab counts and the exam highlight are computed from the entries */
+  document.querySelectorAll('.pub-tab').forEach(function(t){
+    var c = t.querySelector('.pub-count');
+    var k = document.querySelectorAll('#tab-' + t.dataset.tab + ' .ev').length;
+    if (c) c.textContent = k ? '(' + k + ')' : '';
+  });
+  document.getElementById('st-exam').textContent = document.querySelectorAll('.ev[data-type="exam"]').length;
+  </script>
+  <script src="nav.js"></script>
+</body>
+</html>
